@@ -8,7 +8,7 @@ function ComingSoon() {
     <>
       <main>
         <div className="flex flex-col justify-center items-center h-screen">
-          <div className="font-extrabold text-8xl p-20 font-Poppins select-none">
+          <div className="font-extrabold text-8xl p-20 font-Libre select-none transition-opacity">
             Coming Soon
           </div>
           <div className="animate-bounce border-none rounded-full p-4 mb-5">
@@ -29,17 +29,11 @@ function ComingSoon() {
           </div>
           <div>
             <button
-              className={`${styles.wrapper} overflow-hidden rounded-full relative border-white border-2 px-10 py-2`}
+              className={`rounded-full relative border-white border-2 px-10 py-2 hover:border-black hover:bg-white hover:text-black duration-500`}
               onClick={() => {
                 router.push("/testing");
               }}
             >
-              <div
-                id={styles.slide}
-                className="rounded-full bg-slate-50 px-10 py-2 absolute -right-44 top-0 select-none text-zinc-900 "
-              >
-                Back to Home
-              </div>
               <div className="select-none">Back to Home</div>
             </button>
           </div>
