@@ -1,11 +1,17 @@
 import { useRouter } from "next/router";
 import React from "react";
 import styles from "../../styles/ComingSoon.module.css";
+import Header from "../../components/header/index";
+import Head from "next/head";
 
 function ComingSoon() {
   const router = useRouter();
   return (
     <>
+      <Head>
+        <title>Coming Soon Page</title>
+      </Head>
+      <Header />
       <main>
         <div className="flex flex-col justify-center items-center h-screen">
           <div className="font-extrabold text-8xl p-20 font-Libre select-none transition-opacity">
@@ -29,7 +35,7 @@ function ComingSoon() {
           </div>
           <div>
             <button
-              className={`rounded-full relative border-white border-2 px-10 py-2 hover:border-black hover:bg-white hover:text-black duration-500`}
+              className={`rounded-full relative border-black border-2 px-10 py-2 dark:border-white hover:border-black hover:bg-white hover:text-black duration-500`}
               onClick={() => {
                 router.push("/testing");
               }}
