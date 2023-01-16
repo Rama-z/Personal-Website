@@ -41,7 +41,7 @@ function ComingSoon() {
             <button
               className={`rounded-full relative border-black border-2 px-10 py-2 dark:border-white hover:border-black hover:bg-white hover:text-black duration-500`}
               onClick={() => {
-                router.push("/testing");
+                router.push("/");
               }}
             >
               <div className="select-none">Back to Home</div>

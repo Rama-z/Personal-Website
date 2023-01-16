@@ -86,7 +86,7 @@ export default function Header() {
         <div
           className="cursor-pointer"
           onClick={() => {
-            router.push("/");
+            router.push("/testing");
           }}
         >
           {currentTheme === "dark" ? (
