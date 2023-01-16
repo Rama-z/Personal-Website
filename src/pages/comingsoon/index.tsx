@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
 import React from "react";
 import styles from "../../styles/ComingSoon.module.css";
 import Header from "../../components/header/index";
@@ -6,12 +7,15 @@ import Head from "next/head";
 
 function ComingSoon() {
   const router = useRouter();
+  const DynamicHeader = dynamic(() => import("src/components/header/"), {
+    ssr: false,
+  });
   return (
     <>
       <Head>
         <title>Coming Soon Page</title>
       </Head>
-      <Header />
+      <DynamicHeader />
       <main>
         <div className="flex flex-col justify-center items-center h-screen">
           <div className="font-extrabold text-8xl p-20 font-Libre select-none transition-opacity">

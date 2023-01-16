@@ -1,18 +1,35 @@
 import { useTheme } from "next-themes";
 import React, { useEffect, useState } from "react";
+import WhiteLogos from "src/assets/white-logos.png";
+import DarkLogos from "src/assets/dark-logos.png";
+import Image from "next/image";
+import { useRouter } from "next/router";
+
+// interface Laptop {
+//   name: string;
+// }
+
+// class Asus implements Laptop {
+//   name: string;
+
+//   constructor(name: string) {
+//     this.name = name;
+//   }
+// }
 
 export default function Header() {
   const { systemTheme, theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const currentTheme = theme === systemTheme ? systemTheme : theme;
+  const router = useRouter();
   useEffect(() => {
     setMounted(true);
   }, []);
   const themeChanger = () => {
     if (!mounted) return null;
-    const currentTheme = theme === systemTheme ? systemTheme : theme;
     if (currentTheme !== "dark") {
       return (
-        <div className="flex justify-end items-center p-10 ">
+        <div className="">
           <button
             className=""
             onClick={() => {
@@ -38,7 +55,7 @@ export default function Header() {
       );
     }
     return (
-      <div className="flex justify-end items-center p-10 ">
+      <div className="">
         <button
           className=""
           onClick={() => {
@@ -65,8 +82,21 @@ export default function Header() {
   };
   return (
     <>
-      <div></div>
-      {themeChanger()}
+      <div className="flex flex-row justify-between items-center px-12 h-20 bg-white dark:bg-black z-100 max-w-7xl m-auto">
+        <div
+          className="cursor-pointer"
+          onClick={() => {
+            router.push("/");
+          }}
+        >
+          {currentTheme === "dark" ? (
+            <Image src={WhiteLogos} width="50" alt="asd" />
+          ) : (
+            <Image src={DarkLogos} width="50" alt="asd" />
+          )}
+        </div>
+        <div>{themeChanger()}</div>
+      </div>
     </>
   );
 }
