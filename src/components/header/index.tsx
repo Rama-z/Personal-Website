@@ -1,21 +1,9 @@
 import { useTheme } from "next-themes";
 import React, { useEffect, useState } from "react";
-import WhiteLogos from "src/assets/white-logos.png";
-import DarkLogos from "src/assets/dark-logos.png";
+import WhiteLogos from "../../../public/images/white-logos.png";
+import DarkLogos from "../../../public/images/dark-logos.png";
 import Image from "next/image";
 import { useRouter } from "next/router";
-
-// interface Laptop {
-//   name: string;
-// }
-
-// class Asus implements Laptop {
-//   name: string;
-
-//   constructor(name: string) {
-//     this.name = name;
-//   }
-// }
 
 export default function Header() {
   const { systemTheme, theme, setTheme } = useTheme();
@@ -82,7 +70,11 @@ export default function Header() {
   };
   return (
     <>
-      <div className="relative flex flex-row justify-between items-center px-12 h-20 bg-white dark:bg-black max-w-7xl m-auto">
+      <div
+        className={`relative flex flex-row justify-between items-center px-12 h-20 max-w-7xl m-auto z-20 ${
+          theme === "dark" ? "bg-black" : "bg-white"
+        }`}
+      >
         <div
           className="cursor-pointer"
           onClick={() => {

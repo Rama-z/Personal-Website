@@ -12,22 +12,16 @@ export default function index() {
     <>
       <DynamicHeader />
       <Sidebar />
-      <main className="ml-40 m-auto">
-        <div className="my-10">Testing</div>
-        <div className="my-10">Testing</div>
-        <div className="my-10">Testing</div>
-        <div className="my-10">Testing</div>
-        <div className="my-10">Testing</div>
-        <div className="my-10">Testing</div>
-        <div className="my-10">Testing</div>
-        <div className="my-10">Testing</div>
-        <div className="my-10">Testing</div>
-        <div className="my-10">Testing</div>
-        <div className="my-10">Testing</div>
-        <div className="my-10">Testing</div>
-        <div className="my-10">Testing</div>
-        <div className="my-10">Testing</div>
-        <div className="font-black">index</div>
+      <main className="ml-32 m-auto">
+        <div className="flex flex-col h-screen mr-5">
+          <div className="border-2 border-white h-1/2">
+            <div>Profile</div>
+          </div>
+          <div className="border-2 border-white h-1/2">
+            <div>Skills</div>
+            <div></div>
+          </div>
+        </div>
       </main>
     </>
   );

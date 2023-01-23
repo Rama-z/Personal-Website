@@ -4,6 +4,7 @@ import React from "react";
 import styles from "../../styles/ComingSoon.module.css";
 import Header from "../../components/header/index";
 import Head from "next/head";
+import { useTheme } from "next-themes";
 
 function ComingSoon() {
   const router = useRouter();
@@ -18,7 +19,7 @@ function ComingSoon() {
       <DynamicHeader />
       <main>
         <div className="flex flex-col justify-center items-center h-screen">
-          <div className="font-extrabold text-8xl p-20 font-Libre select-none transition-opacity">
+          <div className="animate-wiggles font-extrabold text-8xl p-20 font-Libre select-none">
             Coming Soon
           </div>
           <div className="animate-bounce border-none rounded-full p-4 mb-5">
