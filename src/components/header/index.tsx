@@ -70,7 +70,7 @@ export default function Header() {
   };
   return (
     <>
-      <div className="relative flex flex-row justify-between items-center px-12 h-20 max-w-7xl m-auto z-20 bg-white dark:bg-black">
+      <div className="relative flex flex-row justify-between items-center px-12 h-20 max-w-7xl m-auto z-20 dark:bg-black ">
         <div
           className="cursor-pointer"
           onClick={() => {
@@ -78,9 +78,9 @@ export default function Header() {
           }}
         >
           {currentTheme === "dark" ? (
-            <Image src={WhiteLogos} width="50" alt="asd" />
+            <Image src={WhiteLogos} width="50" alt="asd" priority={true} />
           ) : (
-            <Image src={DarkLogos} width="50" alt="asd" />
+            <Image src={DarkLogos} width="50" alt="asd" priority={true} />
           )}
         </div>
         <div>{themeChanger()}</div>

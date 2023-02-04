@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
 import styles from "styles/Home.module.css";
 // import Header from "components/header/index";
 import Sidebar from "components/sidebar";
+import { useDispatch } from "src/redux/store";
+import { userAction } from "src/redux/slices/userSlice";
 
-export default function index() {
+export default function Index() {
   const DynamicHeader = dynamic(() => import("src/components/header/"), {
     ssr: false,
   });
+  const dispatch = useDispatch();
+  const inputRef = useRef();
+  useEffect(() => {
+    dispatch(userAction.getUserHistory());
+  }, [dispatch]);
   return (
     <>
       <DynamicHeader />
