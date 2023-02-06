@@ -16,7 +16,7 @@ export default function Index() {
   console.log(auth.email);
   useEffect(() => {
     dispatch(userAction.getUserHistoryThunk(auth.token));
-  }, [dispatch]);
+  }, [dispatch, auth.token]);
   return (
     <>
       <DynamicHeader />
