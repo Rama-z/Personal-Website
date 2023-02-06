@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import styles from "styles/Home.module.css";
 // import Header from "components/header/index";
 import Sidebar from "components/sidebar";
-import { useDispatch } from "src/redux/store";
+import { useDispatch, useSelector } from "src/redux/store";
 import { userAction } from "src/redux/slices/userSlice";
 
 export default function Index() {
@@ -12,8 +12,10 @@ export default function Index() {
   });
   const dispatch = useDispatch();
   const inputRef = useRef();
+  const auth = useSelector((state) => state.auth);
+  console.log(auth.email);
   useEffect(() => {
-    dispatch(userAction.getUserHistory());
+    dispatch(userAction.getUserHistoryThunk(auth.token));
   }, [dispatch]);
   return (
     <>
@@ -23,6 +25,12 @@ export default function Index() {
         <div className="flex flex-col h-screen mr-5">
           <div className="border-2 border-white h-1/2">
             <div>Profile</div>
+          </div>
+          <div>
+            <div>Testing Selector</div>
+            <div>{auth.email}</div>
+            <div>{auth.id}</div>
+            <div>{auth.token}</div>
           </div>
           <div className="border-2 border-white h-1/2">
             <div>Skills</div>
