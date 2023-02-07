@@ -41,8 +41,8 @@ export const userSlice = createSlice({
       // console.log(action.type);
     });
     builder.addCase(getUserHistoryThunk.rejected, (state, action) => {
-      console.log(action.error);
-      console.log(action.payload);
+      // console.log(action.error);
+      // console.log(action.payload);
     });
   },
 });

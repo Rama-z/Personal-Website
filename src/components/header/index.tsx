@@ -70,7 +70,7 @@ export default function Header() {
   };
   return (
     <>
-      <div className="relative flex flex-row justify-between items-center px-12 h-20 max-w-7xl m-auto z-20 dark:bg-black ">
+      <div className="relative flex flex-row justify-between items-center px-12 h-20 max-w-7xl m-auto z-20 dark:bg-black border-b-2 border-black">
         <div
           className="cursor-pointer"
           onClick={() => {
