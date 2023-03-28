@@ -10,7 +10,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
       <PersistGate persistor={persister} loading={null}>
-        <ThemeProvider enableSystem={true} attribute="class">
+        <ThemeProvider attribute="class">
           <Component {...pageProps} />
         </ThemeProvider>
       </PersistGate>

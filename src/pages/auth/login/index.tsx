@@ -3,12 +3,15 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { authAction } from "src/redux/slices/authSlices";
-import { AppDispatch, useSelector } from "src/redux/store";
+import { AppDispatch, useSelector, RootState } from "src/redux/store";
 export default function Login() {
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
-  const auth = useSelector((action) => action.auth);
-  const [body, setBody] = useState({});
+  const auth = useSelector((action: RootState) => action.auth);
+  const [body, setBody] = useState({
+    email: "",
+    password: "",
+  });
   const changeHandler = (e: any) => {
     setBody({
       ...body,
@@ -21,9 +24,7 @@ export default function Login() {
       <form
         onSubmit={async (e) => {
           e.preventDefault();
-          console.log("a");
           await dispatch(authAction.authLoginThunk(body));
-          console.log("b");
           router.push("/testing");
         }}
         className="flex flex-col items-center justify-center h-screen"

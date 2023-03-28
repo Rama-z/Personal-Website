@@ -1,11 +1,15 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { useRouter } from "next/router";
 import { authLogin } from "src/utils/api";
 interface Auth {
   id: number;
   email: string;
   token: string;
   status: string;
+}
+
+export interface LoginParams {
+  email: string;
+  password: string;
 }
 
 const initialState = {
@@ -15,10 +19,13 @@ const initialState = {
   status: "",
 } as Auth;
 
-const authLoginThunk = createAsyncThunk("auth/login", async (body: object) => {
-  const response = await authLogin(body);
-  return response;
-});
+const authLoginThunk = createAsyncThunk(
+  "auth/login",
+  async (body: LoginParams) => {
+    const response = await authLogin(body);
+    return response;
+  }
+);
 
 export const authSlices = createSlice({
   name: "auth",
@@ -30,9 +37,11 @@ export const authSlices = createSlice({
         action.type === "auth/login/pending" ? "pending" : action.type;
     });
     builder.addCase(authLoginThunk.rejected, (state, action) => {
+      // state = initialState;
       state.status = action.type;
     });
     builder.addCase(authLoginThunk.fulfilled, (state, action) => {
+      // console.log(state);
       state.id = action.payload.data.result.payload.id;
       state.email = action.payload.data.result.payload.email;
       state.token = action.payload.data.result.token;

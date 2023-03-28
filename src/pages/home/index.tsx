@@ -1,17 +1,41 @@
 import Head from "next/head";
 import Image from "next/image";
-import { Inter } from "@next/font/google";
 import styles from "../../styles/Home.module.css";
 import { useEffect, useState } from "react";
-
-const inter = Inter({ subsets: ["latin"] });
+import Header from "components/header";
+import Profile from "src/assets/download.jpg";
+import {
+  RootState,
+  AppDispatch,
+  useDispatch,
+  useSelector,
+} from "src/redux/store";
+import { userAction } from "src/redux/slices/userSlice";
+import { authAction } from "src/redux/slices/authSlices";
 
 export default function Home() {
+  const dispatch: AppDispatch = useDispatch();
   const [name, setName] = useState("name");
   const [roll, setRoll] = useState(false);
+  const cekRedux = useSelector((state: RootState) => state.auth);
   useEffect(() => {
-    setRoll(false);
-  }, []);
+    // const getHistory = async () => {
+    try {
+      // const failed = (): void => {
+      //   console.log("history fails");
+      //   dispatch(
+      //     authAction.authLoginThunk({ email: "false", password: "false" })
+      //   );
+      // };
+      dispatch(userAction.getUserHistoryThunk(cekRedux.token)).unwrap();
+      console.log("coba");
+    } catch (error) {
+      console.log(error);
+      console.log("error");
+      // }
+    }
+  }, [dispatch, cekRedux.token]);
+
   return (
     <>
       <Head>
@@ -20,8 +44,9 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" /> */}
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Header />
       <main>
-        <div className="absolute h-screen w-screen overflow-hidden">
+        {/* <div className="absolute h-screen w-screen overflow-hidden">
           <div
             className={`flex flex-col bg-blue-400 h-screen overflow-hidden ${
               roll ? "animate-rollup -translate-y-full" : ""
@@ -39,28 +64,52 @@ export default function Home() {
               </button>
             </div>
           </div>
-        </div>
-        <div className="h-5 bg-red-300 mb-10">testing1</div>
-        <div className="h-5 bg-red-300 my-10">testing</div>
-        <div className="h-5 bg-red-300 my-10">testing</div>
-        <div className="h-5 bg-red-300 my-10">testing</div>
-        <div className="h-5 bg-red-300 my-10">testing</div>
-        <div className="h-5 bg-red-300 my-10">testing</div>
-        <div className="h-5 bg-red-300 my-10">testing</div>
-        <div className="h-5 bg-red-300 my-10">testing</div>
-        <div className="h-5 bg-red-300 my-10">testing</div>
-        <div className="h-5 bg-red-300 my-10">testing</div>
-        <div className="h-5 bg-red-300 my-10">testing</div>
-        <div className="h-5 bg-red-300 my-10">testing</div>
-        <div className="h-5 bg-red-300 my-10">testing</div>
-        <div className="h-5 bg-red-300 my-10">testing</div>
-        <div className="h-5 bg-red-300 my-10">testing</div>
-        <div className="h-5 bg-red-300 my-10">testing</div>
-        <div className="h-5 bg-red-300 my-10">testing</div>
-        <div className="h-5 bg-red-300 my-10">testing</div>
-        <div className="h-5 bg-red-300 my-10">testing</div>
-        <div className="h-5 bg-red-300 my-10">testing</div>
-        <div></div>
+        </div> */}
+        <article>
+          <section className="h-screen flex">
+            <section className="flex flex-col p-10 w-3/4">
+              <div className="text-white">
+                Hi, my name is
+                <div
+                  className="transition-colors bg-gradient-to-tr from-primary-300/40 via-primary-300/40 to-primary-400/40
+        dark:from-primary-300 dark:to-primary-400 dark:bg-clip-text dark:text-transparent"
+                >
+                  Zanuar Bagus Ramadhan.
+                </div>
+              </div>
+              <div>
+                I am a software engineer specializing in designing user
+                interfaces and user experiences, for web and mobile
+                applications.
+              </div>
+              <div>
+                Currently i am working as a Front-End Engineer at PT Tricada
+                Tritonik, Bandung
+              </div>
+            </section>
+            <section className="w-1/4 p-10">
+              <Image src={Profile} alt="Profile" priority />
+            </section>
+          </section>
+          <section></section>
+          <section></section>
+          <section>
+            <button
+              onClick={async () => {
+                try {
+                  const getHistory = await dispatch(
+                    userAction.getUserHistoryThunk(cekRedux.token)
+                  );
+                } catch (error) {
+                  console.log(error);
+                }
+              }}
+              className="p-10 flex justify-center items-center"
+            >
+              Tes API
+            </button>
+          </section>
+        </article>
       </main>
     </>
   );

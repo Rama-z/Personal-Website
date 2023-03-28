@@ -4,12 +4,30 @@ import { getHistory } from "../../utils/api";
 export interface UserState {
   email: object;
   name: string;
+  history: History;
+}
+
+interface History {
+  id: number;
+  userId: number;
+  total: number;
+  date: string;
+  updated_at: string;
+  productid: number;
 }
 
 const initialState = {
   name: "",
   email: {},
   youtube: "",
+  history: {
+    id: 0,
+    userId: 0,
+    total: 0,
+    date: "string",
+    updated_at: "string",
+    productid: 0,
+  },
 } as UserState;
 
 const getUserHistoryThunk = createAsyncThunk(
@@ -35,14 +53,14 @@ export const userSlice = createSlice({
     // },
   },
   extraReducers(builder) {
-    builder.addCase(getUserHistoryThunk.fulfilled, (state, action) => {
-      // console.log(action.payload.data);
-      // console.log(action.meta);
-      // console.log(action.type);
+    builder.addCase(getUserHistoryThunk.pending, (state, action) => {
+      console.log("Loading");
     });
     builder.addCase(getUserHistoryThunk.rejected, (state, action) => {
-      // console.log(action.error);
-      // console.log(action.payload);
+      console.log("Error");
+    });
+    builder.addCase(getUserHistoryThunk.fulfilled, (state, action) => {
+      state.history = action.payload.data.result.result;
     });
   },
 });
