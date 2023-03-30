@@ -4,15 +4,16 @@ import { useTheme } from "next-themes";
 import styles from "styles/Home.module.css";
 import Header from "components/header/index";
 import Sidebar from "components/sidebar";
-import { useDispatch, useSelector } from "src/redux/store";
+import { RootState, useDispatch } from "src/redux/store";
 import { userAction } from "src/redux/slices/userSlice";
 import Head from "next/head";
 import Home from "../home";
+import { useSelector } from "react-redux";
 
 export default function Index() {
   const dispatch = useDispatch();
   const inputRef = useRef();
-  const auth = useSelector((state) => state.auth);
+  const auth = useSelector((state: RootState) => state.auth);
   useEffect(() => {
     dispatch(userAction.getUserHistoryThunk(auth.token));
   }, [dispatch, auth.token]);

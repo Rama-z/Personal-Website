@@ -1,13 +1,14 @@
 import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { authAction } from "src/redux/slices/authSlices";
-import { AppDispatch, useSelector, RootState } from "src/redux/store";
+import { AppDispatch, RootState } from "src/redux/store";
 export default function Login() {
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
   const auth = useSelector((action: RootState) => action.auth);
+  console.log(auth);
   const [body, setBody] = useState({
     email: "",
     password: "",

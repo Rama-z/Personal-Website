@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 :root {
-  scroll-behavior: smooth;
   --tw-clr-primary-200: 219 255 0;
   --tw-clr-primary-300: 0 232 135;
   --tw-clr-primary-400: 0 224 243;

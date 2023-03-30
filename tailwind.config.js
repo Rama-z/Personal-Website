@@ -8,7 +8,6 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      sans: [],
       Poppins: ["Poppins", "sans-serif"],
       Libre: ["Libre Baskerville", "sans-serif"],
     },
@@ -37,15 +36,10 @@ module.exports = {
           "70%": { transform: "translateY(0%)" },
           "100%": { transform: "translateY(-100%)" },
         },
-        // rotateButton: {
-        //   "0%": { transform: "rotateY(180deg" },
-        //   "100%": { transform: "rotateY(360deg" },
-        // },
       },
       animation: {
         wiggles: "wiggle 2s linear 1",
         rollup: "rollup 1.5s linear 1",
-        // rotateButton: "rotateButton 1s linear infinite",
       },
     },
   },

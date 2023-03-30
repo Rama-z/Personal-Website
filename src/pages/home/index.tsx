@@ -4,21 +4,26 @@ import styles from "../../styles/Home.module.css";
 import { useEffect, useState } from "react";
 import Header from "components/header";
 import Profile from "src/assets/download.jpg";
-import {
-  RootState,
-  AppDispatch,
-  useDispatch,
-  useSelector,
-} from "src/redux/store";
+import { RootState, AppDispatch, useDispatch } from "src/redux/store";
 import { userAction } from "src/redux/slices/userSlice";
 import { authAction } from "src/redux/slices/authSlices";
+import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
+import { Monoton } from "@next/font/google";
+
+const alegreya = Monoton({
+  weight: "400",
+  fallback: ["arial"],
+});
 
 export default function Home() {
+  const router = useRouter();
   const dispatch: AppDispatch = useDispatch();
   const [name, setName] = useState("name");
   const [roll, setRoll] = useState(false);
   const cekRedux = useSelector((state: RootState) => state.auth);
   useEffect(() => {
+    dispatch(authAction.profile("This"));
     // const getHistory = async () => {
     try {
       // const failed = (): void => {
@@ -67,12 +72,18 @@ export default function Home() {
         </div> */}
         <article>
           <section className="h-screen flex">
-            <section className="flex flex-col p-10 w-3/4">
-              <div className="text-white">
+            <section className="w-1/12"></section>
+            <section className="flex flex-col p-10 w-8/12">
+              <div
+                className="text-white cursor-pointer"
+                onClick={() => {
+                  router.push("#down");
+                }}
+              >
                 Hi, my name is
                 <div
-                  className="transition-colors bg-gradient-to-tr from-primary-300/40 via-primary-300/40 to-primary-400/40
-        dark:from-primary-300 dark:to-primary-400 dark:bg-clip-text dark:text-transparent"
+                  className={`${alegreya.className} transition-colors bg-gradient-to-tr from-primary-300/40 via-primary-300/40 to-primary-400/40
+                  dark:from-primary-300 dark:to-primary-400 dark:bg-clip-text dark:text-transparent`}
                 >
                   Zanuar Bagus Ramadhan.
                 </div>
@@ -87,14 +98,11 @@ export default function Home() {
                 Tritonik, Bandung
               </div>
             </section>
-            <section className="w-1/4 p-10">
-              <Image src={Profile} alt="Profile" priority />
-            </section>
+            <section className="w-1/12"></section>
           </section>
-          <section></section>
-          <section></section>
-          <section>
+          <section className="w-screen flex justify-center items-center">
             <button
+              id="down"
               onClick={async () => {
                 try {
                   const getHistory = await dispatch(
@@ -104,7 +112,7 @@ export default function Home() {
                   console.log(error);
                 }
               }}
-              className="p-10 flex justify-center items-center"
+              className="p-10 "
             >
               Tes API
             </button>

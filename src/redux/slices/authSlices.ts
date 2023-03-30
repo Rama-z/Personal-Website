@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { authLogin } from "src/utils/api";
 interface Auth {
   id: number;
@@ -30,7 +30,11 @@ const authLoginThunk = createAsyncThunk(
 export const authSlices = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    profile: (state, action: PayloadAction<string>) => {
+      console.log(action.payload);
+    },
+  },
   extraReducers(builder) {
     builder.addCase(authLoginThunk.pending, (state, action) => {
       state.status =
