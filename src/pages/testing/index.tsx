@@ -11,12 +11,12 @@ import Home from "../home";
 import { useSelector } from "react-redux";
 
 export default function Index() {
-  const dispatch = useDispatch();
-  const inputRef = useRef();
-  const auth = useSelector((state: RootState) => state.auth);
-  useEffect(() => {
-    dispatch(userAction.getUserHistoryThunk(auth.token));
-  }, [dispatch, auth.token]);
+  // const dispatch = useDispatch();
+  // const inputRef = useRef();
+  // const auth = useSelector((state: RootState) => state.auth);
+  // useEffect(() => {
+  //   dispatch(userAction.getUserHistoryThunk(auth.token));
+  // }, [dispatch, auth.token]);
   return (
     <>
       <Home />

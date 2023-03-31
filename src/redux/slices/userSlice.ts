@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getHistory } from "../../utils/api";
+import state from "./authSlices";
 
 export interface UserState {
   email: object;

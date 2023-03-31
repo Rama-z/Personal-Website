@@ -12,7 +12,7 @@ export interface LoginParams {
   password: string;
 }
 
-const initialState = {
+export const initialState = {
   id: 0,
   email: "",
   token: "",
@@ -22,6 +22,7 @@ const initialState = {
 const authLoginThunk = createAsyncThunk(
   "auth/login",
   async (body: LoginParams) => {
+    console.log(body);
     const response = await authLogin(body);
     return response;
   }
@@ -41,8 +42,13 @@ export const authSlices = createSlice({
         action.type === "auth/login/pending" ? "pending" : action.type;
     });
     builder.addCase(authLoginThunk.rejected, (state, action) => {
-      // state = initialState;
-      state.status = action.type;
+      state.email = initialState.email;
+      state.id = initialState.id;
+      state.status = initialState.status;
+      state.token = initialState.token;
+      console.log(state);
+      // state.status = action.type;
+      console.log(action);
     });
     builder.addCase(authLoginThunk.fulfilled, (state, action) => {
       // console.log(state);

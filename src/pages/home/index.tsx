@@ -9,7 +9,7 @@ import { userAction } from "src/redux/slices/userSlice";
 import { authAction } from "src/redux/slices/authSlices";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import { alegreya } from "src/utils/font";
+// import { alegreya } from "src/utils/font";
 
 export default function Home() {
   const router = useRouter();
@@ -18,23 +18,17 @@ export default function Home() {
   const [roll, setRoll] = useState(false);
   const cekRedux = useSelector((state: RootState) => state.auth);
   useEffect(() => {
-    dispatch(authAction.profile("This"));
-    // const getHistory = async () => {
-    try {
-      // const failed = (): void => {
-      //   console.log("history fails");
-      //   dispatch(
-      //     authAction.authLoginThunk({ email: "false", password: "false" })
-      //   );
-      // };
-      dispatch(userAction.getUserHistoryThunk(cekRedux.token)).unwrap();
-      console.log("coba");
-    } catch (error) {
-      console.log(error);
-      console.log("error");
-      // }
-    }
-  }, [dispatch, cekRedux.token]);
+    // dispatch(authAction.authLoginThunk({ email: "fail", password: "fail" }));
+    // dispatch(userAction.getUserHistoryThunk(cekRedux.token))
+    // .unwrap()
+    // .then(() => {
+    //   console.log("success");
+    // })
+    //   .catch((err) => {
+    //     dispatch(authAction.authLoginThunk.rejected);
+    //     console.log("error");
+    //   });
+  }, [dispatch]);
 
   return (
     <>
@@ -77,7 +71,7 @@ export default function Home() {
               >
                 Hi, my name is
                 <div
-                  className={`${alegreya.className} transition-colors bg-gradient-to-tr from-primary-300/40 via-primary-300/40 to-primary-400/40
+                  className={`transition-colors bg-gradient-to-tr from-primary-300/40 via-primary-300/40 to-primary-400/40
                   dark:from-primary-300 dark:to-primary-400 dark:bg-clip-text dark:text-transparent`}
                 >
                   Zanuar Bagus Ramadhan.

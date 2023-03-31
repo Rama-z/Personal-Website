@@ -7,12 +7,12 @@ import { AppDispatch, RootState } from "src/redux/store";
 export default function Login() {
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
-  const auth = useSelector((action: RootState) => action.auth);
-  console.log(auth);
+  const auth = useSelector((state: RootState) => state.auth);
   const [body, setBody] = useState({
     email: "",
     password: "",
   });
+  console.log(body);
   const changeHandler = (e: any) => {
     setBody({
       ...body,
