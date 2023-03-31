@@ -9,12 +9,7 @@ import { userAction } from "src/redux/slices/userSlice";
 import { authAction } from "src/redux/slices/authSlices";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import { Monoton } from "@next/font/google";
-
-const alegreya = Monoton({
-  weight: "400",
-  fallback: ["arial"],
-});
+import { alegreya } from "src/utils/font";
 
 export default function Home() {
   const router = useRouter();
