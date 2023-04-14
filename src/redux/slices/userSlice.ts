@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getHistory } from "../../utils/api";
-import state from "./authSlices";
 
 export interface UserState {
   email: object;
@@ -14,7 +13,7 @@ interface History {
   total: number;
   date: string;
   updated_at: string;
-  productid: number;
+  productId: number;
 }
 
 const initialState = {
@@ -27,7 +26,7 @@ const initialState = {
     total: 0,
     date: "string",
     updated_at: "string",
-    productid: 0,
+    productId: 0,
   },
 } as UserState;
 

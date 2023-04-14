@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { authAction } from "src/redux/slices/authSlices";
 import { AppDispatch, RootState } from "src/redux/store";
+import { toast } from "react-hot-toast";
+
 export default function Login() {
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
@@ -12,7 +14,18 @@ export default function Login() {
     email: "",
     password: "",
   });
-  console.log(body);
+  const [input, setInput] = useState({
+    body,
+    success: () => {
+      toast.success("Login Success");
+      router.push("/testing");
+    },
+    failed: () => {
+      console.log("kocak");
+      console.log(auth.error);
+      toast.error(auth.error.errors.message);
+    },
+  });
   const changeHandler = (e: any) => {
     setBody({
       ...body,
@@ -25,8 +38,8 @@ export default function Login() {
       <form
         onSubmit={async (e) => {
           e.preventDefault();
-          await dispatch(authAction.authLoginThunk(body));
-          router.push("/testing");
+          setInput({ ...input, body });
+          await dispatch(authAction.authLoginThunk(input));
         }}
         className="flex flex-col items-center justify-center h-screen"
       >

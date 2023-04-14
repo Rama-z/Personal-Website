@@ -1,16 +1,26 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { AxiosError } from "axios";
 import { authLogin } from "src/utils/api";
+import { toast } from "react-hot-toast";
 interface Auth {
   id: number;
   email: string;
   token: string;
   status: string;
+  message: string;
+  error: any;
 }
 
 export interface LoginParams {
-  email: string;
-  password: string;
+  body: {
+    email: string;
+    password: string;
+  };
+  success: () => void;
+  failed: () => void;
 }
+
+export type Callback = {};
 
 export const initialState = {
   id: 0,
@@ -21,21 +31,26 @@ export const initialState = {
 
 const authLoginThunk = createAsyncThunk(
   "auth/login",
-  async (body: LoginParams) => {
-    console.log(body);
-    const response = await authLogin(body);
-    return response;
+  async (body: LoginParams, { rejectWithValue }) => {
+    try {
+      const response = await authLogin(body.body);
+      body.success();
+      return response;
+    } catch (err) {
+      const error: AxiosError = err as any;
+      if (!error) {
+        throw error;
+      }
+      body.failed();
+      return rejectWithValue(error.response?.data);
+    }
   }
 );
 
 export const authSlices = createSlice({
   name: "auth",
   initialState,
-  reducers: {
-    profile: (state, action: PayloadAction<string>) => {
-      console.log(action.payload);
-    },
-  },
+  reducers: {},
   extraReducers(builder) {
     builder.addCase(authLoginThunk.pending, (state, action) => {
       state.status =
@@ -46,16 +61,14 @@ export const authSlices = createSlice({
       state.id = initialState.id;
       state.status = initialState.status;
       state.token = initialState.token;
-      console.log(state);
-      // state.status = action.type;
-      console.log(action);
+      state.error = action.payload;
     });
     builder.addCase(authLoginThunk.fulfilled, (state, action) => {
-      // console.log(state);
       state.id = action.payload.data.result.payload.id;
       state.email = action.payload.data.result.payload.email;
       state.token = action.payload.data.result.token;
       state.status = action.type;
+      state.message = action.payload.data.result.message;
     });
   },
 });

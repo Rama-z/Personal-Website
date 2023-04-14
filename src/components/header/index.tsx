@@ -4,65 +4,19 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
+import HeaderButton from "components/elements/HeaderButton";
+import useLoaded from "src/utils/customHooks/useLoaded";
 
 export default function Header() {
-  const { systemTheme, theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-  const currentTheme = theme === systemTheme ? systemTheme : theme;
+  const { theme, setTheme } = useTheme();
   const router = useRouter();
-  const [scrollY, setScrollY] = useState(0);
+  const content: string[] = ["About", "Experience", "Project", "Contact"];
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-  useEffect(() => {
-    const onScroll = () => {
-      const { pageYOffset, scrollY } = window;
-      setScrollY(window.pageXOffset);
-    };
-    window.addEventListener("scroll", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-    };
-  }, []);
-  const themeChanger = () => {
-    if (!mounted) return null;
-    if (currentTheme !== "dark") {
-      return (
-        <div className="">
-          <button
-            className=""
-            onClick={() => {
-              setTheme("dark");
-            }}
-          >
-            <LightModeOutlinedIcon />
-          </button>
-        </div>
-      );
-    }
-    return (
-      <div className="">
-        <button
-          className=""
-          onClick={() => {
-            setTheme("light");
-          }}
-        >
-          <DarkModeOutlinedIcon />
-        </button>
-      </div>
-    );
-  };
+  const isLoaded = useLoaded();
+
   return (
     <>
-      <div
-        className={
-          scrollY >= 80
-            ? "hidden"
-            : "sticky flex flex-row justify-between items-center px-12 h-20 w-screen max-w-7xl m-auto z-20 bg-white dark:bg-black border-b-2 dark:border-white border-black"
-        }
-      >
+      <header className="flex flex-row justify-between items-center px-12 h-20 m-auto z-20 bg-white dark:bg-black border-b-2 dark:border-white border-black">
         <div
           className="cursor-pointer"
           onClick={() => {
@@ -70,14 +24,33 @@ export default function Header() {
           }}
         >
           Logo
-          {/* {currentTheme === "dark" ? (
-            <Image src={WhiteLogos} width="50" alt="asd" priority={true} />
-          ) : (
-            <Image src={DarkLogos} width="50" alt="asd" priority={true} />
-          )} */}
         </div>
-        <div>{themeChanger()}</div>
-      </div>
+        <div className={`flex items-center ${isLoaded && "slideDown"}`}>
+          {content.map((content, idx) => {
+            return (
+              <HeaderButton
+                key={content}
+                buttons={content}
+                dataFade={idx + 1}
+              />
+            );
+          })}
+          <div className="pl-10">
+            <button
+              className=""
+              onClick={() => {
+                setTheme(theme === "dark" ? "light" : "dark");
+              }}
+            >
+              {theme === "dark" ? (
+                <DarkModeOutlinedIcon />
+              ) : (
+                <LightModeOutlinedIcon />
+              )}
+            </button>
+          </div>
+        </div>
+      </header>
     </>
   );
 }

@@ -1,5 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { persistStore, persistCombineReducers } from "redux-persist";
+import {
+  persistStore,
+  persistCombineReducers,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 import userSlice from "./slices/userSlice";
@@ -33,6 +42,14 @@ const store = configureStore({
           "payload.request",
           "register",
           "rehydrate",
+          "payload",
+          "meta",
+          FLUSH,
+          REHYDRATE,
+          PAUSE,
+          PERSIST,
+          PURGE,
+          REGISTER,
         ],
       },
     }).concat(logger),

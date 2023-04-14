@@ -1,12 +1,13 @@
 import { Html, Head, Main, NextScript } from "next/document";
+import { Toaster } from "react-hot-toast";
 
 export default function Document() {
+  const fonts: string[] = [
+    "https://fonts.googleapis.com/css2?family=Alkatra:wght@400;500;600;700&display=swap",
+    "https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap",
+  ];
   return (
-    <Html
-      lang="en"
-      className="scroll-smooth"
-      style={{ scrollBehavior: "smooth" }}
-    >
+    <Html lang="en">
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -14,14 +15,26 @@ export default function Document() {
           href="https://fonts.gstatic.com"
           crossOrigin="true"
         />
-        <link
+        {fonts.map((font) => {
+          return (
+            <link
+              key={font}
+              href={font}
+              rel="stylesheet"
+              crossOrigin="anonymous"
+              as="font"
+            />
+          );
+        })}
+        {/* <link
           href="https://fonts.googleapis.com/css2?family=Alegreya&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Poppins:wght@500;700&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
           rel="stylesheet"
-        />
+        /> */}
       </Head>
       <body>
         <Main />
         <NextScript />
+        <Toaster />
       </body>
     </Html>
   );
