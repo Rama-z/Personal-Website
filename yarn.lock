@@ -546,6 +546,16 @@
   dependencies:
     tslib "^2.4.0"
 
+"@trpc/client@^10.32.0":
+  version "10.32.0"
+  resolved "https://registry.yarnpkg.com/@trpc/client/-/client-10.32.0.tgz#f1565d9d68fb1ab4beb5fd8e301a16a0691396db"
+  integrity sha512-hrj6XV84nE6DH5AmsPJ0JzIRcx3f6zU0tvS705DnZtNBOoMk7Lx+wX+KCDxj4DxLsTXC+roAxZxWwAB6/LGsXA==
+
+"@trpc/server@^10.32.0":
+  version "10.32.0"
+  resolved "https://registry.yarnpkg.com/@trpc/server/-/server-10.32.0.tgz#15a32f251bdcab4536968aa98e2e397248f28051"
+  integrity sha512-C4HRHpaffw2pekpfNSHQtwlocq6kwAQq48mR9RIsUZGNbjXZbgvBC927vRP6QPAoG+n4oHPWyZ9G1hs3KMcPiw==
+
 "@types/hoist-non-react-statics@*", "@types/hoist-non-react-statics@^3.3.1":
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/@types/hoist-non-react-statics/-/hoist-non-react-statics-3.3.1.tgz#1124aafe5118cb591977aeb1ceaaed1070eb039f"

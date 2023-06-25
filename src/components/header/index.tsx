@@ -16,7 +16,11 @@ export default function Header() {
 
   return (
     <>
-      <header className="flex flex-row justify-between items-center px-12 h-20 m-auto z-20 bg-white dark:bg-black border-b-2 dark:border-white border-black">
+      <header
+        className={`flex flex-row justify-between items-center px-12 h-20 m-auto z-20 ${
+          theme === "dark" ? "header-dark" : "header-light"
+        } `}
+      >
         <div
           className="cursor-pointer"
           onClick={() => {

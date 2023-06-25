@@ -2,8 +2,9 @@ import Header from "components/header";
 import Sidebar from "components/sidebar";
 import React from "react";
 import PreloadProvider from "src/context/PreloadContext";
+import { TLayoutChildren } from "src/types/component";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+const Layout = ({ children }: TLayoutChildren) => {
   return (
     <>
       <PreloadProvider>
@@ -12,4 +13,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </PreloadProvider>
     </>
   );
-}
+};
+
+export default Layout;

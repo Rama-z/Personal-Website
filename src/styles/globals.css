@@ -57,6 +57,7 @@ body {
   margin: 0;
   padding: 0;
   margin: 0 auto;
+  background-color: #1e293b;
 }
 
 header {
@@ -76,12 +77,22 @@ body {
 }
 
 section {
-  @apply px-10;
+  padding: 0rem 5rem 0rem 5rem;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+.header-dark {
+  background-color: #475569;
+  color: #cbd5e1;
+}
+
+.header-light {
+  color: black;
+  background-color: #ffffff;
 }
 
 [data-fade] {
@@ -140,6 +151,22 @@ a {
   }
   to {
     transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+.hovering-navbar {
+  animation-name: slideDown;
+  animation-duration: 1000ms;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0%);
     opacity: 1;
   }
 }
